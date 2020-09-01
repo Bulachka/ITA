@@ -17,12 +17,14 @@
 Для каждого из запроса выведите название страны, в котором находится данный город.
 Примеры
 
-Входные данные
-2
-Russia Moscow Petersburg Novgorod Kaluga
-Ukraine Kiev Donetsk Odessa
+Входные данные:
+"""
 
+N = 2
+str1 = 'Russia Moscow Petersburg Novgorod Kaluga'
+str2 = 'Ukraine Kiev Donetsk Odessa'
 
+"""
 3
 Odessa
 Moscow
@@ -33,6 +35,9 @@ Ukraine
 Russia
 Russia
 """
+def towns(N, str1, str2, town):
+    if town in str1.split(): return  str1.split()[0]
+    else: return  str2.split()[0]
 
 """
 3. Даны два списка чисел. Посчитайте, сколько различных чисел содержится одновременно как в первом списке, так и во втором.
@@ -60,24 +65,36 @@ def fourth(lst1, lst2):
 Первая строка входных данных содержит количество школьников N. Далее идет N чисел Mi, после каждого из чисел идет Mi
 строк, содержащих названия языков, которые знает i-й школьник.
 Пример входных данных:
-	3          # N количество школьников
-2          # M1 количество языков первого школьника
-Russian    # языки первого школьника
-English
-3          # M2 количество языков второго школьника
-Russian
-Belarusian
-English
-3
-Russian
-Italian
-French
+"""
+N = 3          # N количество школьников
+M1 = 2          # M1 количество языков первого школьника
+'Russian'    # языки первого школьника
+'English'
+M2 = 3          # M2 количество языков второго школьника
+'Russian'
+'Belarusian'
+'English'
+M3 = 3
+'Russian'
+'Italian'
+'French'
 
-
+"""
 Выходные данные
 В первой строке выведите количество языков, которые знают все школьники. Начиная со второй строки - список таких языков.
 Затем - количество языков, которые знает хотя бы один школьник, на следующих строках - список таких языков.
 """
+M1_list = ['Russian', 'English']
+M2_list = ['Russian', 'English', 'Belarusian']
+M3_list = ['Russian', 'Italian', 'French']
+common_list = [lan for lan in M1_list if lan in M2_list and lan in M3_list]
+big_list = set(M1_list + M2_list + M3_list)
+print(len(common_list))
+for lan in common_list:
+    print(lan)
+print(len(big_list))
+for lan in big_list:
+    print(lan)
 
 """
 6. Слова
@@ -94,3 +111,7 @@ def words(str_):
 Даны два натуральных числа. Вычислите их наибольший общий делитель при помощи алгоритма Евклида (мы не знаем функции
 и рекурсию).
 """
+def evklid(a, b):
+    while a !=b:
+        a = a - b
+    return a
