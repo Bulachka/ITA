@@ -43,12 +43,24 @@ def my_dec(func):
 3. Реализовать функцию get_ranges которая получает на вход непустой список неповторяющихся целых чисел, отсортированных
 по возрастанию, которая этот список “сворачивает”
 """
+
+
 def get_ranges(lst):
-
-
- get_ranges([0, 1, 2, 3, 4, 7, 8, 10]) // "0-4,7-8,10"
- get_ranges([4,7,10]) // "4,7,10"
- get_ranges([2, 3, 8, 9]) // "2-3,8-9"
+ res = lst[:1]
+ for i in range(len(lst) - 1):
+  if lst[i + 1] == lst[i] + 1:
+   res.append('-')
+  else:
+   res.append(lst[i])
+   res.append(',')
+   res.append(lst[i+1])
+ res.append(lst[-1])
+ out = []
+ for el in range(len(res) - 1):
+  if res[el] != res[el + 1]:
+      out.append(str(res[el]))
+ if res[-1] != out[-1]: out.append(str(res[-1]))
+ return ''.join(out)
 
 """
 4. В файле хранятся данные с сайта IMDB. Скопированные данные хранятся в файле ./data5/ ratings.list.
