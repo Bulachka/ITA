@@ -57,6 +57,16 @@ kortez = ([1, 2, 3], )
 Важно: 1 1 1 - это 3 пары, 1 1 1 1 - это 6 пар
 """
 
+def pairs(stroka):
+    from collections import Counter
+    group_numbers = Counter(stroka)
+    result = {}
+    for key, value in group_numbers.items():
+        if key != ' ' and value > 1:
+            result[key] = ((value*(value-1))//2)
+    return result
+
+
 """
 Уникальные элементы в списке
 Дан список. Выведите те его элементы, которые встречаются в списке только один раз. Элементы нужно выводить в том 
