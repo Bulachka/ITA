@@ -97,8 +97,8 @@ print(f.readline())
 
 def fifth(n):
     answer = 1
-    while n > 2 ** answer: answer += 1
-    return 2 ** (answer - 1)
+    while n > 1 << answer: answer += 1
+    return 1 << (answer - 1) if abs(n - (1 << (answer - 1))) < abs(n - (1 << answer)) else 1 << answer
 
 
 """
@@ -107,10 +107,10 @@ def fifth(n):
 
 
 def sixth(n):
-    vars = []
-    counter = 1
-    while 2 ** counter < n:
-        if not n % (2 ** counter):
-            vars.append(2 ** counter)
-            counter += 1
-    return vars[-1]
+    dividers = []
+    power = 1
+    while 2 ** power <= n:
+        if not n % (2 ** power):
+            dividers.append(2 ** power)
+            power += 1
+    return dividers[-1]
