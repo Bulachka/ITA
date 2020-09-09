@@ -40,12 +40,10 @@ def runner2(*args):
 2. Создайте декоратор, который хранит результаты вызовы функции (за все время вызовов, не только текущий запуск программы)
 """
 result = []
-
-
 def my_dec(func):
     def wrapper(*args, **kwargs):
         global result
-        result.append(func)
+        result.append(func) #работает, но записывает объект функции, а не результат
         new_func = func(*args, **kwargs)
         return new_func
 
@@ -113,4 +111,4 @@ def sixth(n):
         if not n % (1 << power):
             dividers.append(1 << power)
         power += 1
-    return dividers[-1]
+    return dividers[-1] if dividers else "doesn't exist"
