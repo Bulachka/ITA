@@ -109,8 +109,8 @@ def fifth(n):
 def sixth(n):
     dividers = []
     power = 1
-    while 2 ** power <= n:
-        if not n % (2 ** power):
-            dividers.append(2 ** power)
-            power += 1
+    while 1 << power <= n:
+        if not n % (1 << power):
+            dividers.append(1 << power)
+        power += 1
     return dividers[-1]
