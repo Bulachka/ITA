@@ -39,6 +39,17 @@ def towns(N, str1, str2, town):
     if town in str1.split(): return  str1.split()[0]
     else: return  str2.split()[0]
 
+
+#Вариант2 со словарями
+country1 = str1.split()[0]
+country2 = str2.split()[0]
+towns1 = str1.split()[1:]
+towns2 = str2.split()[1:]
+dict1 = dict.fromkeys(towns1, country1)
+dict2 = dict.fromkeys(towns2, country2)
+dict1.get(input())
+
+
 """
 3. Даны два списка чисел. Посчитайте, сколько различных чисел содержится одновременно как в первом списке, так и во втором.
 """
