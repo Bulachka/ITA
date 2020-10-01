@@ -41,13 +41,17 @@ def towns(N, str1, str2, town):
 
 
 #Вариант2 со словарями
-country1 = str1.split()[0]
-country2 = str2.split()[0]
-towns1 = str1.split()[1:]
-towns2 = str2.split()[1:]
-dict1 = dict.fromkeys(towns1, country1)
-dict2 = dict.fromkeys(towns2, country2)
-dict1.get(input())
+n = int(input())
+d = {}
+for i in range(n):
+    country = input().split()
+    name = country[0]
+    cities = country[1:]
+    for city in cities:
+        d.setdefault(city, name)
+m = int(input())
+for i in range(m):
+    print(d.get(input()))
 
 
 """
@@ -106,6 +110,21 @@ for lan in common_list:
 print(len(big_list))
 for lan in big_list:
     print(lan)
+
+#Вариант2 со словарями
+n = int(input())
+d = {}
+for i in range(n):
+    m = int(input())
+    for language in range(m):
+        language = input()
+        if language in d:
+            d[language] += 1
+        else:
+            d.setdefault(language, 1)
+languages = [k for k in d.keys()]
+common_languages = [k for k,v in d.items() if v == n]
+print(len(common_languages), common_languages, len(d), languages, sep='\n')
 
 """
 6. Слова
