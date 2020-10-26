@@ -77,15 +77,35 @@ def get_ranges(lst):
 """
 4. В файле хранятся данные с сайта IMDB. Скопированные данные хранятся в файле ./data5/ ratings.list.
 Откройте и прочитайте файл(если его нет необходимо вывести ошибку).
-"""
-f = open('ratings.list')
-print(f.readline())
-
-"""
 Найдите ТОП250 фильмов и извлеките заголовки.
 Программа создает 3 файла  top250_movies.txt – названия файлов, ratings.txt – гистограмма рейтингов, years.txt –
 гистограмма годов.
 """
+
+
+from collections import Counter
+
+with open("ratings.list") as file_in, open("top250_movies.txt", 'w') as movie, open("ratings.txt", 'w') as file_rank, \
+        open("year.txt", 'w') as file_year:
+    text = file_in.readlines()
+    text = text[28:278] #я просто вручную начинаю с 28 строчки, потому что до этого открыла файл и посмотрела
+    years = []
+    ranks = []
+
+    for line in text:
+        distribution, votes, rank, *title, year = line.strip().split()
+        movie.write(' '.join(title) + '\n')
+        ranks.append(rank)
+        years.append(year[1:5])
+
+    years_counter = Counter(years)
+    for yr in sorted(set(years)):
+        file_year.write(yr + ' ' + '+' * years_counter[yr] + '\n')
+
+    ranks_counter = Counter(ranks)
+    for rk in sorted(set(ranks)):
+        file_rank.write(rk + ' ' + '+' * ranks_counter[rk] + '\n')
+
 
 """
 Бинарные операции:
