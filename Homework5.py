@@ -88,7 +88,12 @@ from collections import Counter
 with open("ratings.list") as file_in, open("top250_movies.txt", 'w') as movie, open("ratings.txt", 'w') as file_rank, \
         open("year.txt", 'w') as file_year:
     text = file_in.readlines()
-    text = text[28:278] #я просто вручную начинаю с 28 строчки, потому что до этого открыла файл и посмотрела
+    ind = 0
+    for line in text:
+        if 'New  Distribution  Votes  Rank  Title' in line:
+            ind = text.index(line)
+            break
+    text = text[ind + 1:ind + 1 + 250]
     years = []
     ranks = []
 
