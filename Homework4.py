@@ -139,7 +139,7 @@ def languages(*args):
 
 def words(str_):
     lst = str_.split()
-    return len(lst)
+    return len(set(lst))
 
 
 """
@@ -150,6 +150,9 @@ def words(str_):
 
 
 def evklid(a, b):
-    while a != b:
-        a = a - b
-    return a
+    while a != 0 and b != 0:
+        if a >= b:
+            a = a % b
+        else:
+            b = b % a
+    return a + b
