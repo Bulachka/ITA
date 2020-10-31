@@ -19,14 +19,14 @@ def runner(*args):
 """
 2. Создайте декоратор, который хранит результаты вызовы функции (за все время вызовов, не только текущий запуск программы)
 """
+
+
 result = []
 def my_dec(func):
     def wrapper(*args, **kwargs):
         global result
-        result.append(func) #работает, но записывает объект функции, а не результат
         new_func = func(*args, **kwargs)
-        return new_func
-
+        result.append(new_func)
     return wrapper
 
 
