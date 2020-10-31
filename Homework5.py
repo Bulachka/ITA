@@ -1,39 +1,19 @@
 """
 1. Оформите решение задач из прошлых домашних работ в функции.
-Напишите функцию runner. (все станет проще когда мы изучим модули, getattr и setattr)
-a. runner() – все фукнции вызываются по очереди
-"""
-import Homework4
-
-
-def runner():
-    for func in dir(Homework4):
-        item = getattr(Homework4, func)
-        if callable(item):
-            item()
-
-
-if __name__ == '__main__':
-    runner()
-
-"""
+Напишите функцию runner.
+a. runner() – все фукнции вызываются по очереди.
 b. runner(‘func_name’) – вызывается только функцию func_name.
-"""
-
-
-def runner1(func_name):
-    func_name()
-
-
-"""
 c. runner(‘func’, ‘func1’...) - вызывает все переданные функции
 """
 
+import Homework4
 
-def runner2(*args):
-    for item in args:
-        if callable(item):
-            item()
+def runner(*args):
+    if args:
+        func_list = [*args]
+    else:
+        func_list = [getattr(Homework4, func) for func in dir(Homework4) if callable(getattr(Homework4, func))]
+    return (func() for func in func_list)
 
 
 """
