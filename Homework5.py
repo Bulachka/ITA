@@ -6,14 +6,15 @@ b. runner(‘func_name’) – вызывается только функцию 
 c. runner(‘func’, ‘func1’...) - вызывает все переданные функции
 """
 
-import Homework4
+import functions_without_arguments as f
 
 def runner(*args):
     if args:
         func_list = [*args]
     else:
-        func_list = [getattr(Homework4, func) for func in dir(Homework4) if callable(getattr(Homework4, func))]
-    return (func() for func in func_list)
+        func_list = [getattr(f, func) for func in dir(f) if callable(getattr(f, func))]
+    for func in func_list:
+        func()
 
 
 """
